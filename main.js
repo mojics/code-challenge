@@ -22,7 +22,8 @@ api.fanOut = (input, fn) => {
   /**
    * Your implementation goes here
    */
-  return [];
+  var input2 = input.map( fn );
+   return input2;
 };
 
 /**
@@ -50,7 +51,15 @@ api.funnel = (input, fn, startValue) => {
   /**
    * Your implementation goes here
    */
-  return 0;
+  function add(a, b) {
+    return a + b;
+  }
+  var total = startValue;
+
+  input.forEach( function(value){
+    total = fn(total, value);
+  });
+  return total;
 };
 
 /**
@@ -76,7 +85,16 @@ api.distill = (input, fn) => {
   /**
    * Your implementation goes here
    */
-  return [];
+  var result = [];
+  var findings = input.map( fn );
+
+  findings.forEach( function(value, index){
+    if( value === true ) {
+      result.push(input[index]);
+    }
+  }); 
+
+  return result;
 };
 
 /**
@@ -98,7 +116,13 @@ api.numberOfChars = (input) => {
   /**
    * Your implementation goes here
    */
-  return 0;
+   var result = '';
+   for (var i = 0; i < input.length; i++) {
+     result += input[i];
+   }
+
+
+  return result.length;
 };
 
 /**
@@ -122,7 +146,12 @@ api.numberOfCertainChars = (input, c) => {
   /**
    * Your implementation goes here
    */
-  return 0;
+   var result = '';
+   for (var i = 0; i < input.length; i++) {
+     result += input[i];
+   }
+
+   return result.split(c).length-1
 };
 
 module.exports = api;
